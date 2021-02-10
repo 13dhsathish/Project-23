@@ -60,37 +60,34 @@ function setup() {
 
  	boxRightBody = Bodies.rectangle(boxPosition+200-20 , boxY, 20,100 , {isStatic:true} );
  	World.add(world, boxRightBody);
-
-
-	Engine.run(engine);
-  
 }
 
 
 function draw() {
-  rectMode(CENTER);
-  background(0);
+	rectMode(CENTER);
+	background(0);
 
-  Engine.update(engine);
- 
-  packageSprite.x= packageBody.position.x 
-  packageSprite.y= packageBody.position.y 
+	Engine.update(engine);
+	
+	packageSprite.x= packageBody.position.x;
+	packageSprite.y= packageBody.position.y;
 
-  if(packageBody.y > 470 && packageBody.position.y > 470){
-	Body.setStatic(packageBody,true);
+   	drawSprites();
 }
 
-   drawSprites();
+function keyPressed(){
 
-   function keyPressed();
-
-    if(keycode === LEFT_ARROW){
-	helicopterSprite.x = helicopterSprite.x - 20;
-}
-	if(keycode === RIGHT_ARROW){
-	helicopterSprite.x = helicopterSprite.x + 20;
-}
+    if(keyCode === LEFT_ARROW){
+		helicopterSprite.x = helicopterSprite.x - 20;
+		traslation = {x : -20, y : 0}
+		Body.translate(packageBody, translation);
+	}
+	if(keyCode === RIGHT_ARROW){
+		helicopterSprite.x = helicopterSprite.x + 20;
+		traslation = {x : 20, y : 0}
+		Body.translate(packageBody, translation);
+	}
 	if(keyCode === DOWN_ARROW){
 		Body.setStatic(packageBody,false);
 	}
- }
+}
